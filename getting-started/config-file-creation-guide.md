@@ -10,6 +10,8 @@ In the first section the most important parameters are explained, the second sec
 
 While the default values for the parameters, which are the ones shown on this page, are set to realistic values so that if a parameter is not given the default value should work fine i sill recommend you to read this entire page so that you are informed about all features freepaths has and do not overlook anything when setting up you simulation.
 
+Please be advised that the information on this page might not be quite up to date.
+
 After learning about the parameters please have a look at the example files provided [here](https://github.com/anufrievroman/freepaths/tree/master/examples) some of which have further explanations on the wiki. 
 
 ## Basic parameters
@@ -89,7 +91,7 @@ HOT_SIDE_POSITION_LEFT           = False
 There will not be a section for every parameter in this section because it would be redundant.  
 To set a wall to be solid set the corresponding `INCLUDE_X_SIDEWALL = True` and set `COLD_SIDE_POSITION_X = False` and `HOT_SIDE_POSITION_X = False`. The same goes if you want to set a wall to a hot or cold side. If a wall is assigned multiple functions an error will be thrown. And if you want a wall to be open set all three parameters to `False`.
 
-![Top view of a default simulation domain.](default_setup.png)
+<figure><img src="../.gitbook/assets/default_setup.png" alt=""><figcaption><p>Top view of a default simulation domain.</p></figcaption></figure>
 
 ### Phonon sources
 
