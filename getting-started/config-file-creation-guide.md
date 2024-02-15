@@ -99,13 +99,14 @@ The phonons are not emitted by the hot sides but by phonon sources. A source of 
 
 ```python
 PHONON_SOURCES = [Source(
-			x=0, y=0, z=0, 
-			size_x=0, size_y=0, size_z=0, 
-			angle_distribution="random_up")]
+		    	x=0, y=0, z=0, 
+			    size_x=0, size_y=0, size_z=0, 
+			    angle_distribution="random_up"
+                )]
 ```
 
 ➡️ `PHONON_SOURCES` : list  
-The list needs to conation one or multiple Sources. Often this will be one source on the hot side. This is the example shown above. Here is an example (note that all values of a Source that are not set will be zero):
+The list needs to conation one or multiple Sources. Often this will be one source on the hot side. Here is an example (note that all values of a Source that are not set will be zero):
 
 ```python
 PHONON_SOURCES = [
@@ -119,14 +120,15 @@ It is often very useful to use `WIDTH`, `LENGTH` and `THICKNESS` like in this ex
 
 ```python
 PHONON_SOURCES = [Source(
-			x=0, y=LENGTH/2, z=0, 
-			size_x=0, size_y=LENGTH, size_z=THICKNESS, 
-			angle_distribution="random_right")]
+			    x=0, y=LENGTH/2, z=0, 
+			    size_x=0, size_y=LENGTH, size_z=THICKNESS, 
+			    angle_distribution="random_right"
+                )]
 ```
 
 Note that the source angle distribution is also adjusted. The angle distribution can be chosen among one of those shown in the image below. In the case of multiple sources the phonons will be emitted from them with equal probability.
 
-![Available phonon angle distributions at the phonon source.](distributions.png)
+<figure><img src="../.gitbook/assets/distributions.png" alt=""><figcaption><p>Available phonon angle distributions at the phonon source.</p></figcaption></figure>
 
 ### Holes and pillars
 
@@ -138,9 +140,9 @@ PILLARS = []
 ```
 
 ➡️ `HOLES` : list  
-To build any structure in freepaths holes are used. A hole has a certain shape and cuts through the simulation domain in the z direction. A selection of holes and their parameters are shown in the image below. If you want to look at the holes and their parameters in more detail have a look at the [holes.py](https://github.com/anufrievroman/freepaths/blob/master/freepaths/holes.py) file. I recommend to have a look at the [all_shapes.py](https://github.com/anufrievroman/freepaths/blob/master/examples/all_shapes.py) example file.
+To build any structure in freepaths holes are used. A hole has a certain shape and cuts through the simulation domain in the z direction. A selection of holes and their parameters are shown in the image below. If you want to look at the holes and their parameters in more detail have a look at the [holes.py](https://github.com/anufrievroman/freepaths/blob/master/freepaths/holes.py) file. I also recommend to have a look at the [all_shapes.py](https://github.com/anufrievroman/freepaths/blob/master/examples/all_shapes.py) example file.
 
-![Possible shapes of holes and walls with their respective parameters.](shapes.png)
+<figure><img src="../.gitbook/assets/shapes.png" alt=""><figcaption><p>Possible shapes of holes and walls with their respective parameters.</p></figcaption></figure>
 
 Note that `ParabolaBottom` and `ParabolaTop` are special because you cannot place them anywhere in the simulation domain. They will always appear at the top or bottom side of the structure. See the [parabolic_lens_focusing.py](https://github.com/anufrievroman/freepaths/blob/master/examples/parabolic_lens_focusing.py) example.
 
@@ -166,7 +168,7 @@ NUMBER_OF_PROCESSES              = 10
 ```
 
 ➡️ `NUMBER_OF_PROCESSES` : int  
-Every phonon is simulated independently one after the other. To speed up the calculation the phonons should be distributed across multiple processes or workers which will each simulate phonons independently. This value should be set to a value close to the amount of threads your processor has. Please take note that the progress percentage displayed in the terminal is the progress of a single process and that some processes will take longer than others to finish.
+Every phonon is simulated independently one after the other. To speed up the calculation the phonons should be distributed across multiple processes which will each simulate phonons independently. This value should be set to a value close to the amount of threads your processor has. Please take note that the progress percentage displayed in the terminal is the progress of a single process and that some processes will take longer than others to finish.
 
 ## Advanced simulation parameters
 
@@ -178,7 +180,7 @@ SPECIFIC_HEAT_CAPACITY           = 714  # [J/kg/K] for Si at 300 K
 IS_TWO_DIMENSIONAL_MATERIAL      = False
 ```
 
-➡️ `MEDIA` : str
+➡️ `MEDIA` : str  
 This parameter describes what material the simulation domain is made of. Phonons speed and internal scattering behavior are examples of what is affected by this. Current choices are:
 
 * Si
@@ -231,7 +233,7 @@ If `USE_GRAY_APPROXIMATION_MFP` is set this needs to be set to the phonon mean f
 
 Please do not confuse the "virtual" timesteps discussed in this section with the timesteps discussed in the Most basic parameters section. The `NUMBER_OF_TIMESTEPS` parameter defines the maximum time a phonon has to travel through the structure while the parameters of this section are used to make sure the simulation is in a steady state. 
 
-Considering the `Thermal map.pdf` and the resulting `Temperature profile.pdf` please consider that the physics of the entire simulation behave with the temperature of the parameter `T` even if `Temperature profile.pdf` shows a significantly higher temperature. This is because the temperature in `Temperature profile.pdf` results from the heat flux that enters the structure which is dependant on `NUMBER_OF_PHONONS` and the simulation length (which is `(NUMBER_OF_VIRTUAL_TIMESTEPS - INITIALIZATION_TIMESTEPS) * TIMESTEP`). The `NUMBER_OF_VIRTUAL_TIMESTEPS` parameter is pretty much set at random and thus the temperatures in `Temperature profile.pdf` should not be taken at face value. For the thermal conductivity calculation the gradient of this profile is used.
+Considering the `Thermal map.pdf` and the resulting `Temperature profile.pdf` please consider that the physics of the entire simulation behave with the temperature of the parameter `T` even if `Temperature profile.pdf` shows a significantly higher temperature. This is because the temperature in `Temperature profile.pdf` results from the amount of heat that enters the structure which is dependant on `NUMBER_OF_PHONONS`. Thus the temperatures in `Temperature profile.pdf` should not be taken at face value. For the thermal conductivity calculation the gradient of this profile is used.
 
 ```python
 NUMBER_OF_VIRTUAL_TIMESTEPS      = 300000
@@ -243,7 +245,7 @@ NUMBER_OF_INITIALIZATION_TIMEFRAMES = 3
 The phonons do not all enter the structure at the same time but a virtual start time is assigned to each phonon randomly and the range of these start times is controlled with this parameter. This means that because no phonons are generated before the simulation starts that the first moments of the simulation are not useful because all phonos are in the beginning of the structure and none are towards the end of the structure. This also means that phonons that enter the structure towards the end of the simulation time and exit the structure after the simulation time are not considered for some calculations during their entire flight time. This is not a huge issue but be aware that the shorter the simulation time is with respect to the time the phonons need to traverse the structure, the more information that is generated is not considered. So this parameter should at least be a couple times larger that the time it takes phonons to traverse the structure. The time it takes phonons to traverse the structure can be determined with `Distribution of travel times.pdf` (Determining the 95% or 99% quantile by eye should be sufficient).
 
 ➡️ `INITIALIZATION_TIMESTEPS` : int  
-To address the issue of the start of the simulation not being useful the amount of timesteps entered here will not be considered for the final calculation. This value should be about one or two times longer than the time it takes phonons to traverse the structure.
+To address the issue of the start of the simulation not being useful the amount of timesteps entered here will not be considered for the final calculation. This value should be about one or two times the time it takes phonons to traverse the structure.
 
 ➡️ `NUMBER_OF_INITIALIZATION_TIMEFRAMES` : int  
 The temperature profile, heat flux profile ant thermal conductivity are not only calculated for the time after the initialization timesteps but also for some timeframes during the initialization timeframes. This parameter defines how many of these timeframes are created in the initialization time. This can be useful to observe the convergence of the profiles towards the profile of the final timestep.
