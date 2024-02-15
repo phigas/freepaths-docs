@@ -18,7 +18,7 @@
 * [Algorithm](algorithm.md)
 * [Equations](equations.md)
 
-## Tutorials
+## Example file explanations
 
 * [Nanowire](tutorials/nanowire.md)
 * [Phononic crystal](tutorials/phononic-crystal.md)
