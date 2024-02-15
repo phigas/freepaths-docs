@@ -19,7 +19,7 @@ The temperature gradient is obtained by a linear regression and the heat flux va
 
 <figure><img src="../.gitbook/assets/thermal conductivity profile.jpg" alt="" width="375"><figcaption><p>Thermal conductivity converges as the system reaches steady state.</p></figcaption></figure>
 
-There are two heat flux profiles calculated in the simulation. The one called `Heat flux profile effective.pdf` is calculated by averaging the heat flux over the entire simulation domain and the `Heat flux profile material.pdf` only averages the heat flux where there is material so not where there are holes. This means that both the effective and material thermal conductivity are provided in `Thermal conductivity.pdf`.
+There are two heat flux profiles calculated in the simulation. The one called `Heat flux profile effective.pdf` is calculated by averaging the heat flux over the entire simulation domain and the `Heat flux profile material.pdf` only averages the heat flux where there is material so not where there are holes. This means that both the effective and material thermal conductivity are provided in `Thermal conductivity.pdf` (although if you are interested in the material thermal conductivity the MFP sampling mode could be more interesting).
 
 ## How to use it
 
@@ -30,6 +30,8 @@ The software does not give correct results if pillars are present in the simulat
 Because the calculation relies on the pixel grid to calculate the profiles make sure that it is small enough and looks good (some discontinuities in the pixels adjacent to holes are expected and correct).
 
 Make sure that you simulate enough phonons (at least a couple thousand) to get good results.
+
+Make sure that NUMBER_OF_VIRTUAL_TIMESTEPS and INITIALIZATION_TIMESTEPS are set correctly.
 
 ## References
 
