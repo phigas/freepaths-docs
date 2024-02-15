@@ -44,7 +44,7 @@ The temperature of the simulation in Kelvin. Since increasing the temperature in
 
 ### Simulation domain
 
-The simulation domain consists of a box. These parameters control the size of the box.
+The simulation domain consists of a box. These parameters control the size of the box. The unit is meters.
 
 ```python
 THICKNESS                        = 150e-9
@@ -52,13 +52,13 @@ WIDTH                            = 500e-9
 LENGTH                           = 2000e-9
 ```
 
-`THICKNESS` : float  
+➡️ `THICKNESS` : float  
 Defines the thickness of the simulation domain in meters. This corresponds to the z coordinate and the box will span from `-THICKNESS/2` to `THICKNESS/2` on the z axis.
 
-`WIDTH` : float  
+➡️ `WIDTH` : float  
 Defines the width of the simulation domain in meters. This corresponds to the x coordinate and the box will span from `-WIDTH/2` to `WIDTH/2` on the x axis. 
 
-`LENGTH` : float  
+➡️ `LENGTH` : float  
 Defines the length of the simulation domain in meters. This corresponds to the y coordinate and the box will span from `0` to `LENGTH` on the y axis. 
 
 ### Simulation boundaries
@@ -102,7 +102,7 @@ PHONON_SOURCES = [Source(
 			angle_distribution="random_up")]
 ```
 
-`PHONON_SOURCES` : list  
+➡️ `PHONON_SOURCES` : list  
 The list needs to conation one or multiple Sources. Often this will be one source on the hot side. This is the example shown above. Here is an example (note that all values of a Source that are not set will be zero):
 
 ```python
@@ -135,7 +135,7 @@ HOLES = []
 PILLARS = []
 ```
 
-`HOLES` : list  
+➡️ `HOLES` : list  
 To build any structure in freepaths holes are used. A hole has a certain shape and cuts through the simulation domain in the z direction. A selection of holes and their parameters are shown in the image below. If you want to look at the holes and their parameters in more detail have a look at the [holes.py](https://github.com/anufrievroman/freepaths/blob/master/freepaths/holes.py) file. I recommend to have a look at the [all_shapes.py](https://github.com/anufrievroman/freepaths/blob/master/examples/all_shapes.py) example file.
 
 ![Possible shapes of holes and walls with their respective parameters.](shapes.png)
@@ -154,7 +154,7 @@ for row in range(5):
         HOLES.append(CircularHole(x=x, y=y, diameter=200e-9))
 ```
 
-`PILLARS` : list  
+➡️ `PILLARS` : list  
 Pillars are a more experimental feature and the only pillar available at the time is `CircularPillar`. Pillars work the same way as holes but instead of preventing phonons to enter a certain area of the simulation domain they extend the simulation domain in z direction locally.
 
 ### Multiprocessing parameter
@@ -163,7 +163,7 @@ Pillars are a more experimental feature and the only pillar available at the tim
 NUMBER_OF_PROCESSES              = 10
 ```
 
-`NUMBER_OF_PROCESSES` : int  
+➡️ `NUMBER_OF_PROCESSES` : int  
 Every phonon is simulated independently one after the other. To speed up the calculation the phonons should be distributed across multiple processes or workers which will each simulate phonons independently. This value should be set to a value close to the amount of threads your processor has. Please take note that the progress percentage displayed in the terminal is the progress of a single process and that some processes will take longer than others to finish.
 
 ## Advanced simulation parameters
@@ -176,7 +176,7 @@ SPECIFIC_HEAT_CAPACITY           = 714  # [J/kg/K] for Si at 300 K
 IS_TWO_DIMENSIONAL_MATERIAL      = False
 ```
 
-`MEDIA` : str
+➡️ `MEDIA` : str
 This parameter describes what material the simulation domain is made of. Phonons speed and internal scattering behavior are examples of what is affected by this. Current choices are:
 
 * Si
@@ -185,10 +185,10 @@ This parameter describes what material the simulation domain is made of. Phonons
 * AlN
 * Graphite
 
-`SPECIFIC_HEAT_CAPACITY` : float  
+➡️ `SPECIFIC_HEAT_CAPACITY` : float  
 This is used for determining the structure's temperature which is necessary for the thermal conductivity calculation. Currently this has to be set manually and should correspond to the simulation temperature `T`. It is planned to have it automatically set through the `MEDIA` and `T` parameters.
 
-`IS_TWO_DIMENSIONAL_MATERIAL` : bool  
+➡️ `IS_TWO_DIMENSIONAL_MATERIAL` : bool  
 If this is set to `True` the z dimension will be ignored and the simulation will take place only in the x-y plane. This is usually used for Graphene sheet simulation.
 
 ### Roughness parameters
@@ -216,13 +216,13 @@ USE_GRAY_APPROXIMATION_MFP       = False
 GRAY_APPROXIMATION_MFP           = None
 ```
 
-`INCLUDE_INTERNAL_SCATTERING` : bool  
+➡️ `INCLUDE_INTERNAL_SCATTERING` : bool  
 If this is set to `False` phonons will not experience internal scattering. This means that they will only be scattered on Holes and simulation boundaries. This is mainly used for debugging and testing purposes.
 
-`USE_GRAY_APPROXIMATION_MFP` : bool  
+➡️ `USE_GRAY_APPROXIMATION_MFP` : bool  
 Use the gray approximation to determine the internal scattering rate.
 
-`GRAY_APPROXIMATION_MFP` : float  
+➡️ `GRAY_APPROXIMATION_MFP` : float  
 If `USE_GRAY_APPROXIMATION_MFP` is set this needs to be set to the phonon mean free path to be used for the gray approximation.
 
 ### Simulation time parameters
@@ -237,13 +237,13 @@ INITIALIZATION_TIMESTEPS         = 50000
 NUMBER_OF_INITIALIZATION_TIMEFRAMES = 3
 ```
 
-`NUMBER_OF_VIRTUAL_TIMESTEPS` : int  
+➡️ `NUMBER_OF_VIRTUAL_TIMESTEPS` : int  
 The phonons do not all enter the structure at the same time but a virtual start time is assigned to each phonon randomly and the range of these start times is controlled with this parameter. This means that because no phonons are generated before the simulation starts that the first moments of the simulation are not useful because all phonos are in the beginning of the structure and none are towards the end of the structure. This also means that phonons that enter the structure towards the end of the simulation time and exit the structure after the simulation time are not considered for some calculations during their entire flight time. This is not a huge issue but be aware that the shorter the simulation time is with respect to the time the phonons need to traverse the structure, the more information that is generated is not considered. So this parameter should at least be a couple times larger that the time it takes phonons to traverse the structure. The time it takes phonons to traverse the structure can be determined with `Distribution of travel times.pdf` (Determining the 95% or 99% quantile by eye should be sufficient).
 
-`INITIALIZATION_TIMESTEPS` : int  
+➡️ `INITIALIZATION_TIMESTEPS` : int  
 To address the issue of the start of the simulation not being useful the amount of timesteps entered here will not be considered for the final calculation. This value should be about one or two times longer than the time it takes phonons to traverse the structure.
 
-`NUMBER_OF_INITIALIZATION_TIMEFRAMES` : int  
+➡️ `NUMBER_OF_INITIALIZATION_TIMEFRAMES` : int  
 The temperature profile, heat flux profile ant thermal conductivity are not only calculated for the time after the initialization timesteps but also for some timeframes during the initialization timeframes. This parameter defines how many of these timeframes are created in the initialization time. This can be useful to observe the convergence of the profiles towards the profile of the final timestep.
 
 ## Plotting/Output parameters
@@ -260,7 +260,7 @@ NUMBER_OF_PIXELS_Y               = 100
 IGNORE_FAULTY_PHONONS            = False
 ```
 
-`NUMBER_OF_PIXELS_X` `NUMBER_OF_PIXELS_Y` : int
+➡️ `NUMBER_OF_PIXELS_X` `NUMBER_OF_PIXELS_Y` : int
 These parameters define the pixel grid which is used for the map creation so a higher number will generally result in higher quality maps. Be informed that this is not purely for looks but that the thermal conductivity calculations rely on the values in these maps. I recommend to set these using this code snippet where the pixel size can be adjusted: 
 
 ```python
@@ -269,7 +269,7 @@ NUMBER_OF_PIXELS_X             = int(WIDTH / pixel_size)
 NUMBER_OF_PIXELS_Y             = int(LENGTH / pixel_size)
 ```
 
-`IGNORE_FAULTY_PHONONS` : bool  
+➡️ `IGNORE_FAULTY_PHONONS` : bool  
 It is possible that phonons escape the structure and get trapped outside the structure or travel outside the simulation domain. This can cause the maps to not look nice because the holes are not empty. If this parameter is set to `True` all phonons that are outside the structure are simply ignored in the map generation which improves both the look and the calculations. I recommend to keep this on `False` so that you notice if phonons leave the structure which can be an indicator of some errors or bugs. If phonons leave the structure this can be turned on to still get clean data.
 
 ### Structure plots
@@ -280,13 +280,13 @@ OUTPUT_TRAJECTORIES_OF_FIRST     = 50
 OUTPUT_STRUCTURE_COLOR           = "#F0F0F0"
 ```
 
-`OUTPUT_SCATTERING_MAP` : bool  
+➡️ `OUTPUT_SCATTERING_MAP` : bool  
 If this is set to `True` an additional output file `Scattering map.pdf` will be generated in which the position and type of all scattering events is shown. This can be very useful for debugging and testing.
 
-`OUTPUT_TRAJECTORIES_OF_FIRST` : int  
+➡️ `OUTPUT_TRAJECTORIES_OF_FIRST` : int  
 This parameter defines how many trajectories of phonons are saved into the `Phonon paths.csv` output file and how many phonon trajectories are plotted in the `Phonon paths XY.pdf` and `Phonon paths YZ.pdf` output files.
 
-`OUTPUT_STRUCTURE_COLOR` : str  
+➡️ `OUTPUT_STRUCTURE_COLOR` : str  
 This variable defines the background color in the `Phonon paths XY.pdf` and `Phonon paths YZ.pdf` output plots. You can use a hexadecimal color or a color name like `'blue'` or any color that matplotlib accepts.
 
 ### Line plots
@@ -296,10 +296,10 @@ NUMBER_OF_NODES                  = 400
 NUMBER_OF_LENGTH_SEGMENTS        = 10
 ```
 
-`NUMBER_OF_NODES` : int  
+➡️ `NUMBER_OF_NODES` : int  
 This value affects the number of "buckets" for the histogram output plots like for example `Distribution of angles.pdf`.
 
-`NUMBER_OF_LENGTH_SEGMENTS` : int  
+➡️ `NUMBER_OF_LENGTH_SEGMENTS` : int  
 A few plots display information in segments along the y axis like `Scattering rates.pdf` and `Time spent in segments.pdf`. The number of segments for these plots can be adjusted with this parameter.
 
 ### Animation
@@ -313,8 +313,8 @@ OUTPUT_PATH_ANIMATION            = False
 OUTPUT_ANIMATION_FPS             = 24
 ```
 
-`OUTPUT_PATH_ANIMATION` : bool  
+➡️ `OUTPUT_PATH_ANIMATION` : bool  
 Set this to `True` to generate an animation.
 
-`OUTPUT_ANIMATION_FPS` : int  
+➡️ `OUTPUT_ANIMATION_FPS` : int  
 Each timestep corresponds to one frame. This parameter determines the playback speed of the frames in the generated video. Please note that all phonons will start flying at the beginning of the video.
