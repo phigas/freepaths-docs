@@ -15,8 +15,8 @@
 
 ## Theoretical explanations
 
-* [Algorithm](Theroretical explanations/algorithm.md)
-* [Equations](Theroretical explanations/equations.md)
+* [Algorithm](theroretical-explanations/algorithm.md)
+* [Equations](theroretical-explanations/equations.md)
 
 ## Example file explanations
 
