@@ -4,20 +4,20 @@ description: How to run FreePATHS simulations
 
 # Usage
 
-FreePATHS is a command line application, so it runs inside Linux, MacOS, or Windows terminal. It takes an input file or config file from the user, which contains all the settings, and outputs the results in a new folder. For an extensive guide on creating config files please see  [config-file-creation-guide.md](config-file-creation-guide.md "mention").
+FreePATHS is a command line application, so it runs inside Linux, MacOS, or Windows terminal. It takes an input file or config file from the user, which contains all the settings, and outputs the results in a new folder. For an extensive guide on creating config files please see  [config-file-creation-guide.md](../getting-started/config-file-creation-guide.md).
 
-There are two modes of using the program.&#x20;
+There are two modes of using the program.
 
-* Main mode traces a large number of phonons through a structure and collects statistics about their paths. This mode calculates the thermal flux and Temperature profile of the sample and uses this to calculate effective thermal conductivity.&#x20;
+* Main mode traces a large number of phonons through a structure and collects statistics about their paths. This mode calculates the thermal flux and Temperature profile of the sample and uses this to calculate effective thermal conductivity.
 * The MFP sampling mode measures phonon mean free paths using a small number of phonons and calculates the thermal conductivity by integrating phonon dispersion.
 
 ### Demo
 
-First, if you simply run `freepaths` without specifying an input file, the program will run a [demo simulation](../tutorials/nanowire.md) and output some demo results.&#x20;
+First, if you simply run `freepaths` without specifying an input file, the program will run a [demo simulation](../tutorials/nanowire.md) and output some demo results.
 
 ### Main mode
 
-In the main mode, the program traces large number of phonons through a structure and calculates various statistical distributions and maps. In this mode, the thermal conductivity will be calculated via Fourier law. See [themal-conductivity-calculation.md](../advanced-tutorials/themal-conductivity-calculation.md "mention") for more information on this.
+In the main mode, the program traces large number of phonons through a structure and calculates various statistical distributions and maps. In this mode, the thermal conductivity will be calculated via Fourier law. See [themal-conductivity-calculation.md](../advanced-tutorials/themal-conductivity-calculation.md) for more information on this.
 
 Run the program as:
 

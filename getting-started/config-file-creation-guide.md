@@ -1,7 +1,5 @@
 # Config file creation guide
 
-## Introduction
-
 Freepaths is used by providing a config file to the program that controls the simulation. This config file is in the form of a python script. In this python script you can either define the freepaths parameters directly like this `NUMBER_OF_PHONONS = 100`, or you can also use python code to set the freepaths parameters like this for example `TIMESTEP = 300e-9 / 10000`.
 
 Each parameter has a default value which is defined in the [default_config.py](https://github.com/anufrievroman/freepaths/blob/master/freepaths/default_config.py) file. If you provide no config file freepaths will simply run the default config. And each parameter that you do not set will use the default value. If you input a non-existent parameter, it will be ignored and no error will be raised, so double-check the parameters.
@@ -12,7 +10,7 @@ In the first section the most important parameters are explained, the second sec
 
 While the default values for the parameters, which are the ones shown on this page, are set to realistic values so that if a parameter is not given the default value should work fine i sill recommend you to read this entire page so that you are informed about all features freepaths has and do not overlook anything when setting up you simulation.
 
-After learning about the parameters please have a look at the example file provided [here](https://github.com/anufrievroman/freepaths/tree/master/examples) some of which have further explanations on the wiki. 
+After learning about the parameters please have a look at the example files provided [here](https://github.com/anufrievroman/freepaths/tree/master/examples) some of which have further explanations on the wiki. 
 
 ## Basic parameters
 
@@ -28,21 +26,21 @@ NUMBER_OF_TIMESTEPS            = 200000
 T                              = 300
 ```
 
-`OUTPUT_FOLDER_NAME` : string   
-The outputs of the simulation will be saved in the Results folder. In this folder another folder with this name will be created which will contain the outputs files. So in this case the result files will be in `Results/Example config`. Keep in mind that the Results folder will be created in the folder you executed the freepaths command. Also pay attention that if the simulation is run again the results will be overwritten without warning.  
-A useful trick is to use f-strings to automatically name the output folders. For example if the same simulation is to be run at multiple temperatures using `OUTPUT_FOLDER_NAME = f'Simulation at {T}K'` will automatically put the simulation temperature in the output folder name.
+➡️ `OUTPUT_FOLDER_NAME` : string   
+The outputs of the simulation will be saved in the Results folder. In this folder another folder with this name will be created which will contain the outputs files. So in this case the result files will be in `Results/Si nanowire at 300 K`. Keep in mind that the Results folder will be created in the folder you executed the freepaths command. Also pay attention that if the simulation is run again the results will be overwritten without warning.  
+A useful trick is to use f-strings to automatically name the output folders. For example if the same simulation is to be run at multiple temperatures using `OUTPUT_FOLDER_NAME = f'Simulation at {T}K'` will automatically put the simulation temperature in the output folder name. Just make sure to define the parameters (`T` in this case) before.
 
-`NUMBER_OF_PHONONS` : int  
+➡️ `NUMBER_OF_PHONONS` : int  
 This will define how many phonons are simulated. Since the Monte Carlo simulation approach is inherently statistical more phonons should result in more stable results with less standard variation between the results of different simulations at the cost of more calculation time.
 
-`TIMESTEP` : float  
-The phonons are not simulated in a continuous fashion but only every timestep. If the timestep is small the phonon behavior will be more realistic but the simulation time will increase. And vice versa for a large timestep. Because the phonons are only simulated every timestep the time between two scattering events of a particular phonon can not be smaller than the timestep so take this into account especially when simulating at high temperatures where scattering events are more frequent. 
+➡️ `TIMESTEP` : float  
+The phonons are not simulated in a continuous fashion but only every timestep. If the timestep is small the phonon behavior will be more realistic but the simulation time will increase. And vice versa for a large timestep. Because the phonons are only simulated every timestep the time between two scattering events of a particular phonon can not be smaller than the timestep so take this into account especially when simulating at high temperatures where scattering events are more frequent. If you experience wrong or unexpected phonon behavior reducing the timestep can also help with this.
 
-`NUMBER_OF_TIMESTEPS` : int  
+➡️ `NUMBER_OF_TIMESTEPS` : int  
 The phonon is simulated until it reaches a cold side or until the number of timesteps is reached. This is to prevent infinite calculation times if a phonon gets stuck somewhere. At the end of the simulation the percentage of phonons that reach the cold side is displayed in the terminal. The number of timesteps should usually be high enough so that most (more than 90% or 95%) of phonons reach the cold side.
 
-`T` : float  
-The temperature of the simulation in Kelvin. Since increasing the temperature increases the number of scattering event and phonons take longer to traverse the structure simulations at hight temperatures take significantly longer than at low temperatures. As an example the internal scattering rate and phonon wavelengths are dependant on the temperature.
+➡️ `T` : float  
+The temperature of the simulation in Kelvin. Since increasing the temperature increases the number of scattering events and phonons take longer to traverse the structure simulations at hight temperatures take significantly longer than at low temperatures.
 
 ### Simulation domain
 

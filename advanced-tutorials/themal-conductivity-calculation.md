@@ -1,2 +1,2 @@
-# Themal conductivity calculation
+# Thermal conductivity calculation
 
