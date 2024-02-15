@@ -9,6 +9,9 @@
 * [Installation](getting-started/installation.md)
 * [Usage](getting-started/usage.md)
 * [Config file creation guide](getting-started/config-file-creation-guide.md)
+  * [Basic parameters](getting-started/config-file-creation-guide.md#basic-parameters)
+  * [Advanced simulation parameters](getting-started/config-file-creation-guide.md#advanced-simulation-parameters)
+  * [Plotting/Output parameters](getting-started/config-file-creation-guide.md#plottingoutput-parameters)
 
 ## Theoretical explanations
 
