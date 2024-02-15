@@ -8,7 +8,7 @@ description: How to create your own simulations
 
 In the [examples](https://github.com/anufrievroman/freepaths/tree/master/examples) folder, you'll find several typical input files. Also, in the file [default\_config.py](https://github.com/anufrievroman/freepaths/blob/master/freepaths/default\_config.py), you'll find all possible config values that can be used in the input file. If some parameters are not provided, they'll be taken from the [default config](https://github.com/anufrievroman/freepaths/blob/master/freepaths/default\_config.py). If you input a non-existent parameter, it will be ignored and no error will be raised, so double-check the parameters. Some of the basic parameters are illustrated below:
 
-<figure><img src="../.gitbook/assets/MC_scheme.png" alt=""><figcaption><p>Scheme of simulated structure indicating several of the basic parameters.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/MCscheme.png" alt=""><figcaption><p>Scheme of simulated structure indicating several of the basic parameters.</p></figcaption></figure>
 
 To begin, you can start with a simple set of most basic parameters, for example:
 

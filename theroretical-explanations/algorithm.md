@@ -6,7 +6,7 @@ description: General flow of the simulation
 
 The algorithm runs the simulations step-by-step and phonon-by-phonon. For each phonon, the algorithm calculates a trajectory, with a time step _dt_ and for as many time steps as required for the phonon to reach the cold side or until a maximum number of time steps is reached.
 
-<figure><img src=".gitbook/assets/MC_scheme.png" alt=""><figcaption><p>Scheme of the simulated system, indicating some of the parameters set in the input files.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/MCscheme.png" alt=""><figcaption><p>Scheme of the simulated system, indicating some of the parameters set in the input files.</p></figcaption></figure>
 
 ### Initialization
 
@@ -42,4 +42,4 @@ Beside the surface scattering, phonon can also experience [internal scattering](
 
 Once the simulation is over for a given phonon, the algorithm collects all the phonon properties (frequency, speed, path etc.), it's entrance and exit angles, and other results and stores it in files. Then, the process repeats for the required number of phonons. After simulations for all phonons is done, the algorithm calculates various distributions and statistical facts about the simulation. For example, it calculates phonon spectrum at the beginning, phonon trajectories, phonon exit angle distribution, group velocities etc. The examples of the distribution are shown above in the picture. Then, it outputs all this information into the graphs and into .csv files. Examples below shows scattering maps and statistics obtained using the Monte Carlo code for a [serpentine nanowire](https://pubs.rsc.org/en/content/articlelanding/2019/NR/C9NR03863A).
 
-![Examples of scattering maps](.gitbook/assets/example\_freepaths.jpg)
+<figure><img src="../.gitbook/assets/MCscheme.png" alt=""><figcaption><p>Scheme of simulated structure indicating several of the basic parameters.</p></figcaption></figure>
