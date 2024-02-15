@@ -14,9 +14,9 @@ This Monte Carlo algorithm simulates trajectories of phonons in 3D models of nan
 
 ### Contents
 
-* [Installation](installation.md)
-* [Usage](usage.md)
+* [Installation](getting-started/installation.md)
+* [Usage](getting-started/usage.md)
 * [Algorithm](algorithm.md)
 * [Equations](equations.md)
 * [References and credits](references-and-credits.md)
-* [Tutorials](broken-reference)
+* [Tutorials](broken-reference/)
