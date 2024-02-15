@@ -20,7 +20,6 @@
 
 ## Tutorials
 
-* [Basics](tutorials/basics.md)
 * [Nanowire](tutorials/nanowire.md)
 * [Phononic crystal](tutorials/phononic-crystal.md)
 * [Parabolic lens](tutorials/parabolic-lens.md)
