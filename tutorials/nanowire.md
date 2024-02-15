@@ -12,7 +12,7 @@ The simulation models thermal transport in a Si nanowire at 300 K. The algorithm
 
 <figure><img src="../.gitbook/assets/paths.jpg" alt="" width="563"><figcaption><p>Example phonon paths in the structure.</p></figcaption></figure>
 
-From the profile plots, we can see how the temperature and heat flux profiles converges with time as the system is reaching the state:
+From the profile plots, we can see how the temperature and heat flux profiles converges with time as the system is reaching the state (the different colored lines represent the system state at different times):
 
 <div>
 
@@ -22,25 +22,4 @@ From the profile plots, we can see how the temperature and heat flux profiles co
 
 <figure><img src="../.gitbook/assets/heat flux (2).jpg" alt=""><figcaption><p>Heat flux profiles converge to the flat line.</p></figcaption></figure>
 
-</div>
-
-Using the Fourier law:
-
-$$
-J =  \kappa \nabla T,
-$$
-
-we can calculate the thermal conductivity from the obtained heat flux and temperature profiles:
-
-<figure><img src="../.gitbook/assets/thermal conductivity profile.jpg" alt="" width="375"><figcaption><p>Thermal conductivity converges as the system reaches steady state.</p></figcaption></figure>
-
-We can observe how the thermal conductivity converges to about 55 W/mK as the system is reaching the steady state.
-
-{% hint style="danger" %}
-Note that the thermal conductivity calculated with this method, at the moment, is only reliable for simple structures like nanowires or membranes without holes. Any holes or pillars will introduce irregularities in the thermal profiles and render the thermal conductivity invalid.
-{% endhint %}
-
-### References
-
-* Anufriev et al. [Nanoscale, 11, 13407-13414 (2019)](https://pubs.rsc.org/en/content/articlehtml/2019/nr/c9nr03863a)
-* Anufriev et al. [ACS Nano 12, 11928 (2018)](https://pubs.acs.org/doi/abs/10.1021/acsnano.8b07597)
+This can be used to estimate the thermal conductivity of the structure. See the [thermal conductivity calculation](../advanced-tutorials/themal-conductivity-calculation.md) page for more information.

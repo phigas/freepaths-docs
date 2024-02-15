@@ -53,3 +53,5 @@ Below are the schemes of these two systems and resulting thermal gradients:
 <figure><img src="../.gitbook/assets/image (10).png" alt="" width="563"><figcaption><p>Schemes and gradients in systems with vertical and horizontal gradients.</p></figcaption></figure>
 
 Likewise, the gradient can be set in any other direction as long as hot and cold sides are different. More than one wall can serve as a cold or a hot side. Essentially, hot side means that phonons will be diffusely scattered from that wall (thermalized). Conversely, cold side means that phonons will be absorbed by that wall and simulation will be over for these phonons.
+
+Note that while it is possible to send the phonons through the structure in any direction the thermal conductivity calculation will only work for phonons traveling in the y direction.
