@@ -1,13 +1,10 @@
-# Freepaths Basics
-
 # Adding your own Hole or Pillar
-(This should be on it's own page but i add it into this document for simplicity)
 
 This page will guide you through the process of adding and testing your own hole into freepaths (pillars work similarly to holes but this page will focus on holes). Please note that you need some Python knowledge to do this. It is recommended to [fork the main repository ](https://github.com/anufrievroman/freepaths/fork) so you have your own version to work on.
 
 ## Understanding the code structure
 
-All holes and pillars are defined in the [holes.py](https://github.com/anufrievroman/freepaths/blob/master/freepaths/holes.py) file. And each hole and pillar is defined as a class in this file. For the hole to work with freepaths some requirements need to be fulfilled. (Pillars have an added requirement of needing to have both x0 and y0 as class attributes)
+All holes and pillars are defined in the [holes.py](https://github.com/anufrievroman/freepaths/blob/master/freepaths/holes.py) file. And each hole and pillar is defined as a class in this file. For the hole to work with freepaths some requirements need to be fulfilled. (Pillars have an added requirement of needing to have both `x0` and `y0` as class attributes)
 
 I will walk you through the requirements step by step in the following sections. Please feel free to look at the other holes to see how they work if you need some inspiration.
 
@@ -26,8 +23,8 @@ The class inherits from the general Hole class (which does not do anything curre
 Let's continue by adding the `is_inside` method:
 
 ```python
-	def is_inside(self, x, y, z, cf):
-		pass
+    def is_inside(self, x, y, z, cf):
+        pass
 ```
 
 Except for the `__init__` method the arguments of all methods of the hole classes need to be exactly as specified to work and the methods need to return the correct object types.
@@ -59,7 +56,7 @@ You now have a working hole that you can use in freepaths without it throwing an
 
 ## Creating the hole shape
 
-The first step is to finish the `__init__` method to get and store things like the hole position or size and to do any preliminary calculations. I recommend avoiding to use `x` and `y` as attribute name and to use `x0` and `y0` instead since `x` and `y` and `z` are used in the other methods.
+The first step is to finish the `__init__` method to get and store things like the hole position or size and to do any preliminary calculations. I recommend avoiding to use `x` and `y` as attribute names and to use `x0` and `y0` instead since `x` and `y` and `z` are used in the other methods.
 
 After that let's add the `is_inside` method. Remember that this method should evaluate if the given point is inside the hole and return what surface the phonon will scatter off (or you can see it as what region of the hole the phonon is in) if it is inside. But really the is_inside method just needs to return anything if the point is inside and nothing if not and you can do any further analysis in the `check_if_scattering` method.
 
