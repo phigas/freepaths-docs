@@ -1,5 +1,5 @@
 ---
-description: Free Phonon And THermal Simulator
+description: Free Phonon And Thermal Simulator
 ---
 
 # FreePATHS
@@ -11,12 +11,3 @@ This Monte Carlo algorithm simulates trajectories of phonons in 3D models of nan
 ### Code repository
 
 [https://github.com/anufrievroman/freepaths](https://github.com/anufrievroman/freepaths)
-
-### Contents
-
-* [Installation](getting-started/installation.md)
-* [Usage](getting-started/usage.md)
-* [Algorithm](algorithm.md)
-* [Equations](equations.md)
-* [References and credits](references-and-credits.md)
-* [Tutorials](broken-reference/)

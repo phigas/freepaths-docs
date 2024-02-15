@@ -30,19 +30,19 @@ T                              = 300
 
 `OUTPUT_FOLDER_NAME` : string   
 The outputs of the simulation will be saved in the Results folder. In this folder another folder with this name will be created which will contain the outputs files. So in this case the result files will be in `Results/Example config`. Keep in mind that the Results folder will be created in the folder you executed the freepaths command. Also pay attention that if the simulation is run again the results will be overwritten without warning.  
-A useful trick is to use f-strings to automatically name the output folders. For example if the same simulation is to be run at multiple temperatures using `OUTPUT_FOLDER_NAME = f'Simulation at {T}K'` will automatically put the simulation temerature in the output folder name.
+A useful trick is to use f-strings to automatically name the output folders. For example if the same simulation is to be run at multiple temperatures using `OUTPUT_FOLDER_NAME = f'Simulation at {T}K'` will automatically put the simulation temperature in the output folder name.
 
 `NUMBER_OF_PHONONS` : int  
-This will define how many phonons are simulated. Since the Monte Carlo simulation approach is inherently statistical more phonons should result in more stable results with less standart variation between the results of different simulations at the cost of more calculation time.
+This will define how many phonons are simulated. Since the Monte Carlo simulation approach is inherently statistical more phonons should result in more stable results with less standard variation between the results of different simulations at the cost of more calculation time.
 
 `TIMESTEP` : float  
-The phonons are not simulated in a continuuous fashion but only every timestep. If the timestep is small the phonon behaviour will be more realistic but the simulation time will increase. And vice versa for a large timestep. Because the phonons are only simulated every timestep the time between two scattering events of a particular phonon can not be smaller than the timestep so take this into account especially when simulating at high temperatures where scattering events are more frequent. 
+The phonons are not simulated in a continuous fashion but only every timestep. If the timestep is small the phonon behavior will be more realistic but the simulation time will increase. And vice versa for a large timestep. Because the phonons are only simulated every timestep the time between two scattering events of a particular phonon can not be smaller than the timestep so take this into account especially when simulating at high temperatures where scattering events are more frequent. 
 
 `NUMBER_OF_TIMESTEPS` : int  
 The phonon is simulated until it reaches a cold side or until the number of timesteps is reached. This is to prevent infinite calculation times if a phonon gets stuck somewhere. At the end of the simulation the percentage of phonons that reach the cold side is displayed in the terminal. The number of timesteps should usually be high enough so that most (more than 90% or 95%) of phonons reach the cold side.
 
 `T` : float  
-The temperature of the simulation in Kelvin. Since increasing the temeperature increases the number of scattering event and phonns take longer to traverse the structure simulations at hight temperatures take significantly longer than at low temperatures. As an example the internal scattering rate and phonon wavelengths are dependant on the temperature.
+The temperature of the simulation in Kelvin. Since increasing the temperature increases the number of scattering event and phonons take longer to traverse the structure simulations at hight temperatures take significantly longer than at low temperatures. As an example the internal scattering rate and phonon wavelengths are dependant on the temperature.
 
 ### Simulation domain
 
@@ -166,7 +166,7 @@ NUMBER_OF_PROCESSES              = 10
 ```
 
 `NUMBER_OF_PROCESSES` : int  
-Every phonon is simulated independantly one after the other. To speed up the calculation the phonons should be distributed across multiple processes or workers which will each simulate phonons independently. This value should be set to a value close to the amount of threads your processor has. Please take note that the progress percentage displayed in the terminal is the progress of a single process and that some processes will take longer than others to finish.
+Every phonon is simulated independently one after the other. To speed up the calculation the phonons should be distributed across multiple processes or workers which will each simulate phonons independently. This value should be set to a value close to the amount of threads your processor has. Please take note that the progress percentage displayed in the terminal is the progress of a single process and that some processes will take longer than others to finish.
 
 ## Advanced simulation parameters
 
@@ -179,7 +179,7 @@ IS_TWO_DIMENSIONAL_MATERIAL      = False
 ```
 
 `MEDIA` : str
-This parameter describes what material the simulation domain is made of. Phonons speed and internal scattering behaviour are examples of what is affected by this. Current choices are:
+This parameter describes what material the simulation domain is made of. Phonons speed and internal scattering behavior are examples of what is affected by this. Current choices are:
 
 * Si
 * SiC
@@ -206,11 +206,11 @@ PILLAR_ROUGHNESS                 = 2e-9
 PILLAR_TOP_ROUGHNESS             = 0.2e-9
 ```
 
-The roughness values are experssed in meters. Most of the variable names are pretty self-explanatory. To clarify, `TOP_ROUGHNESS` references the simulation domain boundary in positive z direction and `BOTTOM_ROUGHNESS` in negative z direction. `SIDE_WALL_ROUGHNESS` are all other simulation domain boundaries.
+The roughness values are expressed in meters. Most of the variable names are pretty self-explanatory. To clarify, `TOP_ROUGHNESS` references the simulation domain boundary in positive z direction and `BOTTOM_ROUGHNESS` in negative z direction. `SIDE_WALL_ROUGHNESS` are all other simulation domain boundaries.
 
-If the roughness is set to a very low value the scattering will be mostly specular which can be used on the side walls for example as a symmetric/periodic boundary condition. It can also be usefor for testing purposes to check if the scattering behaviour is programmed correctly.
+If the roughness is set to a very low value the scattering will be mostly specular which can be used on the side walls for example as a symmetric/periodic boundary condition. It can also be used for for testing purposes to check if the scattering behavior is programmed correctly.
 
-### Phonon behaviour parameters
+### Phonon behavior parameters
 
 ```python
 INCLUDE_INTERNAL_SCATTERING      = True
@@ -231,7 +231,7 @@ If `USE_GRAY_APPROXIMATION_MFP` is set this needs to be set to the phonon mean f
 
 Please do not confuse the "virtual" timesteps discussed in this section with the timesteps discussed in the Most basic parameters section. The `NUMBER_OF_TIMESTEPS` parameter defines the maximum time a phonon has to travel through the structure while the parameters of this section are used to make sure the simulation is in a steady state. 
 
-Considering the `Thermal map.pdf` and the resulting `Temperature profile.pdf` please consider that the physics of the entire simulation behave with the temperature of the parameter `T` even if `Temperature profile.pdf` shows a significantly higher temperature. This is because the temperature in `Temperature profile.pdf` results from the heat flux that enters the strucure which is dependant on `NUMBER_OF_PHONONS` and the simulation length (which is `(NUMBER_OF_VIRTUAL_TIMESTEPS - INITIALIZATION_TIMESTEPS) * TIMESTEP`). The `NUMBER_OF_VIRTUAL_TIMESTEPS` parameter is pretty much set at random and thus the temperatures in `Temperature profile.pdf` should not be taken at face value. For the thermal conductivity calculation the gradient of this profile is used. *is this influenced by the simulaition length?*
+Considering the `Thermal map.pdf` and the resulting `Temperature profile.pdf` please consider that the physics of the entire simulation behave with the temperature of the parameter `T` even if `Temperature profile.pdf` shows a significantly higher temperature. This is because the temperature in `Temperature profile.pdf` results from the heat flux that enters the structure which is dependant on `NUMBER_OF_PHONONS` and the simulation length (which is `(NUMBER_OF_VIRTUAL_TIMESTEPS - INITIALIZATION_TIMESTEPS) * TIMESTEP`). The `NUMBER_OF_VIRTUAL_TIMESTEPS` parameter is pretty much set at random and thus the temperatures in `Temperature profile.pdf` should not be taken at face value. For the thermal conductivity calculation the gradient of this profile is used.
 
 ```python
 NUMBER_OF_VIRTUAL_TIMESTEPS      = 300000
@@ -240,10 +240,10 @@ NUMBER_OF_INITIALIZATION_TIMEFRAMES = 3
 ```
 
 `NUMBER_OF_VIRTUAL_TIMESTEPS` : int  
-The phonons do not all enter the structure at the same time but a virtual start time is assigned to each phonon randomly and the range of these start times is controled with this parameter. This means that because no phonons are generated before the simulation starts that the first moments of the simulation are not useful because all phonos are in the beginning of the structure and none are towards the end of the structure. This also means that phonons that enter the structure towards the end of the simulation time and exit the structure after the simulation time are not considered for some calculations during their entire flight time. This is not a huge issue but be aware that the shorter the simulation time is with respect to the time the phonons need to traverse the structure, the more information that is generated is not considered. So this parameter should at least be a couple times larger that the time it takes phonons to traverse the structure. The time it takes phonons to traverse the structure can be determined with `Distribution of travel times.pdf` (Determining the 95% or 99% quantile by eye should be sufficient).
+The phonons do not all enter the structure at the same time but a virtual start time is assigned to each phonon randomly and the range of these start times is controlled with this parameter. This means that because no phonons are generated before the simulation starts that the first moments of the simulation are not useful because all phonos are in the beginning of the structure and none are towards the end of the structure. This also means that phonons that enter the structure towards the end of the simulation time and exit the structure after the simulation time are not considered for some calculations during their entire flight time. This is not a huge issue but be aware that the shorter the simulation time is with respect to the time the phonons need to traverse the structure, the more information that is generated is not considered. So this parameter should at least be a couple times larger that the time it takes phonons to traverse the structure. The time it takes phonons to traverse the structure can be determined with `Distribution of travel times.pdf` (Determining the 95% or 99% quantile by eye should be sufficient).
 
 `INITIALIZATION_TIMESTEPS` : int  
-To adress the issue of the start of the simulation not being useful the amount of timesteps entered here will not be considered for the final calculation. This value should be about one or two times longer than the time it takes phonons to traverse the structure.
+To address the issue of the start of the simulation not being useful the amount of timesteps entered here will not be considered for the final calculation. This value should be about one or two times longer than the time it takes phonons to traverse the structure.
 
 `NUMBER_OF_INITIALIZATION_TIMEFRAMES` : int  
 The temperature profile, heat flux profile ant thermal conductivity are not only calculated for the time after the initialization timesteps but also for some timeframes during the initialization timeframes. This parameter defines how many of these timeframes are created in the initialization time. This can be useful to observe the convergence of the profiles towards the profile of the final timestep.
@@ -254,7 +254,7 @@ The temperature profile, heat flux profile ant thermal conductivity are not only
 
 The heat flux maps, the thermal map and the pixel volumes plot are all based on the same pixel grid. The thermal conductivity calculation is heavily dependant on these plots.
 
-Concerinng the heat flux maps it is important to consider that the `Heat flux map.pdf` file displays the absolute magnintude of heat flux. So if a phonon travels through a place twice in opposite directions the heat flux will be added. In the `Heat flux map x.pdf` and `Heat flux map y.pdf` the directional heat flux is calculated which means that if a phonon travels through a place twice in opposite directions the heat flux will cancel out.
+Concerning the heat flux maps it is important to consider that the `Heat flux map.pdf` file displays the absolute magnitude of heat flux. So if a phonon travels through a place twice in opposite directions the heat flux will be added. In the `Heat flux map x.pdf` and `Heat flux map y.pdf` the directional heat flux is calculated which means that if a phonon travels through a place twice in opposite directions the heat flux will cancel out.
 
 ```python
 NUMBER_OF_PIXELS_X               = 25
@@ -272,7 +272,7 @@ NUMBER_OF_PIXELS_Y             = int(LENGTH / pixel_size)
 ```
 
 `IGNORE_FAULTY_PHONONS` : bool  
-It is possible that phonons escape the strucutre and get trapped outside the structure or travel outside the simulation domain. This can cause the maps to not look nice because the holes are not empty. If this parameter is set to `True` all phonons that are outside the structure are simply ignored in the map generation which improves both the look and the calculations. I recommend to keep this on `False` so that you notice if phonons leave the structure which can be an indicator of some errors or bugs. If phonons leave the structure this can be turned on to still get clean data.
+It is possible that phonons escape the structure and get trapped outside the structure or travel outside the simulation domain. This can cause the maps to not look nice because the holes are not empty. If this parameter is set to `True` all phonons that are outside the structure are simply ignored in the map generation which improves both the look and the calculations. I recommend to keep this on `False` so that you notice if phonons leave the structure which can be an indicator of some errors or bugs. If phonons leave the structure this can be turned on to still get clean data.
 
 ### Structure plots
 
@@ -289,7 +289,7 @@ If this is set to `True` an additional output file `Scattering map.pdf` will be 
 This parameter defines how many trajectories of phonons are saved into the `Phonon paths.csv` output file and how many phonon trajectories are plotted in the `Phonon paths XY.pdf` and `Phonon paths YZ.pdf` output files.
 
 `OUTPUT_STRUCTURE_COLOR` : str  
-This variable defines the background colour in the `Phonon paths XY.pdf` and `Phonon paths YZ.pdf` output plots. You can use a hexadecimal colour or a colour name like `'blue'` or any colour that matplotlib accepts.
+This variable defines the background color in the `Phonon paths XY.pdf` and `Phonon paths YZ.pdf` output plots. You can use a hexadecimal color or a color name like `'blue'` or any color that matplotlib accepts.
 
 ### Line plots
 
