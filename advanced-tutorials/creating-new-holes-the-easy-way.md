@@ -19,7 +19,7 @@ The `FunctionLineHole` is just a wrapper for `PointLineHole` where you provide a
 The `FunctionLineHole` uses a mathematical function to define the hole shape. Let's use $sin(x)/x$ as an example. Here is how this is coded.
 
 ```python
-HOLES = [FunctionLineHole(x=0, y=200e-9, function_range=(-2*np.pi, np.pi), function=lambda x: np.sin(x)/x, size_x=500e-9, size_y=300e-9, resolution=1e-9)]
+HOLES = [FunctionLineHole(x=0, y=200e-9, function_range=(-2*np.pi, np.pi), function=lambda x: np.sin(x)/x, size_x=500e-9, size_y=300e-9, resolution=1e-9, thickness=30e-9)]
 ```
 
 Let's go through the arguments one by one:
@@ -30,6 +30,52 @@ Let's go through the arguments one by one:
 - The `resolution` is the distance in x between two adjacent points or circles. Pay attention that this is only the distance in x direction so if the function is steep the actual distance between the points will be significantly larger than this. 
 
 <figure><img src="../.gitbook/assets/asymmetric.png" alt=""><figcaption><p>Example with asymmetric range.</p></figcaption></figure>
+
+### Addressing singularities
+
+You probably noticed that $sin(x)/x$ cannot be evaluated at $x=0$ because of the division by x. Since only some points of the function are evaluated this can be fine but it can cause errors and should be addressed. A simple way to do this is by defining a python function like this:
+
+```python
+def sinxdivx(x):
+    if x == 0:
+        return 1
+    else:
+        return np.sin(x)/x
+
+HOLES = [FunctionLineHole(x=0, y=200e-9, function_range=(-2*np.pi, np.pi), function=sinxdivx, size_x=500e-9, size_y=300e-9, resolution=1e-9, thickness=30e-9)]
+```
+
+As you can see any python object that takes one argument and outputs a number can be used here. Here is an alternative way of implementing this:
+
+```python
+sinxdivx = lambda x: 1 if x == 0 else np.sin(x)/x
+
+HOLES = [FunctionLineHole(x=0, y=200e-9, function_range=(-2*np.pi, np.pi), function=sinxdivx, size_x=500e-9, size_y=300e-9, resolution=1e-9, thickness=30e-9)]
+```
+
+### Alternative sizing method
+
+For more control over the sizing of the function you can set `size_x` and/or `size_y` to `None` (or omit them) and instead set the scaling through the function. Here is an example where the x scaling is controlled through the function:
+
+```python
+HOLES = [FunctionLineHole(x=0, y=200e-9, function_range=(-2*np.pi, np.pi), function=lambda x: np.sin(x)/x*300e-9, size_x=None, size_y=300e-9, resolution=1e-9, thickness=30e-9)]
+```
+
+And here an example where both are controlled through the function:
+
+```python
+HOLES = [FunctionLineHole(x=0, y=200e-9, function_range=(-2*np.pi, np.pi), function=lambda x: np.sin(x/3/np.pi*500e-9)/x*300e-9, resolution=1e-9, thickness=30e-9)]
+```
+
+Take into consideration that the hole will be bigger than the function because of it's thickness.
+
+## How to use PointLineHole
+
+As mentioned `FunctionLineHole` is just a wrapper for `PointLineHole`. This means that we can implement our own function for generating the points. Here is a simple example where we simply provide two hard coded points:
+
+```python
+HOLES = [PointLineHole(x=0, y=200e-9, function_range=(-2*np.pi, np.pi), function=lambda x: np.sin(x/3/np.pi*500e-9)/x*300e-9, resolution=1e-9, thickness=30e-9)]
+```
 
 ## Ideas to add features (remove before push)
 
