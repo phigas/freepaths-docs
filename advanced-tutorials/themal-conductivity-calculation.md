@@ -12,8 +12,10 @@ $$
 
 The thermal flux and temperature gradient are obtained through the temperature and heat flux profiles:
 
+<div>
 <figure><img src="../.gitbook/assets/thermal profile.jpg" alt=""><figcaption><p>Temperature profiles at different time instervals converge to the linear profile.</p></figcaption></figure>
 <figure><img src="../.gitbook/assets/heat flux (2).jpg" alt=""><figcaption><p>Heat flux profiles converge to the flat line.</p></figcaption></figure>
+</div>
 
 The temperature gradient is obtained by a linear regression and the heat flux value through the mean over the y profile. As the simulation progresses you can see the value for the thermal conductivity converge:
 
