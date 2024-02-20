@@ -1,4 +1,4 @@
-# Adding your own Hole or Pillar
+# Adding your own hole or pillar (the advanced way)
 
 This page will guide you through the process of adding and testing your own hole into freepaths (pillars work similarly to holes but this page will focus on holes). Please note that you need some Python knowledge to do this. It is recommended to [fork the main repository ](https://github.com/anufrievroman/freepaths/fork) so you have your own version to work on.
 
