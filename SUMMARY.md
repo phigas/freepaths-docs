@@ -28,8 +28,9 @@
 
 ## Advanced Tutorials
 
-* [Themal conductivity calculation](advanced-tutorials/themal-conductivity-calculation.md)
-* [Adding your own Hole or Pillar](advanced-tutorials/Adding-your-own-Hole-or-Pillar.md)
+* [Thermal conductivity calculation](advanced-tutorials/themal-conductivity-calculation.md)
+* [Creating new holes (the easy way)](advanced-tutorials/creating-new-holes-the-easy-way.md)
+* [Adding your own hole or pillar (the advances way)](advanced-tutorials/adding-your-own-hole-or-pillar-the-advanced-way.md)
 
 ---
 

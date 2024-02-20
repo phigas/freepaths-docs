@@ -2,6 +2,8 @@
 
 This page will guide you through the process of adding and testing your own hole into freepaths (pillars work similarly to holes but this page will focus on holes). Please note that you need some Python knowledge to do this. It is recommended to [fork the main repository ](https://github.com/anufrievroman/freepaths/fork) so you have your own version to work on.
 
+There is an alternative method for adding new shapes which is through using the very flexible `PointLineHole` or `FunctionLineHole`. See the [corresponding tutorial](creating-new-holes-the-easy-way.md) for more information. The advantage of adding the hole manually with this tutorial is that the computation can be optimized and made a lot faster. 
+
 ## Understanding the code structure
 
 All holes and pillars are defined in the [holes.py](https://github.com/anufrievroman/freepaths/blob/master/freepaths/holes.py) file. And each hole and pillar is defined as a class in this file. For the hole to work with freepaths some requirements need to be fulfilled. (Pillars have an added requirement of needing to have both `x0` and `y0` as class attributes)

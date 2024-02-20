@@ -158,6 +158,8 @@ for row in range(5):
         HOLES.append(CircularHole(x=x, y=y, diameter=200e-9))
 ```
 
+There are multiple ways to add arbitrary shapes into the simulation. The simplest one is based on mathematical equations and requires practically no programming knowledge. Check out [this tutorial](../advanced-tutorials/creating-new-holes-the-easy-way.md).
+
 ➡️ `PILLARS` : list  
 Pillars are a more experimental feature and the only pillar available at the time is `CircularPillar`. Pillars work the same way as holes but instead of preventing phonons to enter a certain area of the simulation domain they extend the simulation domain in z direction locally.
 
