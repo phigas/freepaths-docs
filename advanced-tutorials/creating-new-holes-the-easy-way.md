@@ -104,6 +104,8 @@ def make_line_hole(dx, dy, resolution, x, y, thickness, rotation):
 HOLES = [make_line_hole(100e-9, 150e-9, 5e-9, 0e-9, 150e-9, 30e-9, 0)]
 ```
 
+<figure><img src="../.gitbook/assets/line.png" alt=""><figcaption><p>Simple line.</p></figcaption></figure>
+
 The size of the line in x and y are defined through `dx` and `dy`, `resolution` is used to define the distance between points, `x` and `y` position the center of the line. `thickness` and `rotation` work as expected. Now multiple lines can be used to generate more complex structures like letters:
 
 ```python
@@ -113,6 +115,7 @@ HOLES = [
     make_line_hole(0e-9, 150e-9, 5e-9, 40e-9, 150e-9, 30e-9, 0),
     ]
 ```
+<figure><img src="../.gitbook/assets/letter.png" alt=""><figcaption><p>Letter built out of simple lines.</p></figcaption></figure>
 
 The problem is that if you try to rotate the structure using the `rotation` argument you rotate each line individually instead of the whole structure:
 
@@ -141,6 +144,11 @@ HOLES = [
         ], 5e-9, 0e-9, 150e-9, 30e-9, 30)
     ]
 ```
+
+<div>
+<figure><img src="../.gitbook/assets/letter1.png" alt=""><figcaption><p>Rotation applied to each line individually.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/letter2.png" alt=""><figcaption><p>Rotation applied to whole structure.</p></figcaption></figure>
+</div>
 
 ### Example 2 - Circular arcs
 
@@ -174,6 +182,8 @@ def make_arc_hole(radius, start_angle, end_angle, resolution, x, y, thickness, r
 
 HOLES = [make_arc_hole(200e-9, 20, 90, 5e-9, -100e-9, 50e-9, 30e-9, 0)]
 ```
+
+<figure><img src="../.gitbook/assets/circulararc.png" alt=""><figcaption><p>Circular arc.</p></figcaption></figure>
 
 ### Example 3 - Combining structures
 
@@ -213,6 +223,8 @@ HOLES = [
     ]
 ```
 
+<figure><img src="../.gitbook/assets/nlab.png" alt=""><figcaption><p>Word built with lines and arcs.</p></figcaption></figure>
+
 ### Example 4 - Box with rounded corners
 
 This hole can also be used to trace the outline of a shape which will result in an shape with rounded corners:
@@ -248,17 +260,33 @@ HOLES = [
     ]
 ```
 
+<div>
+<figure><img src="../.gitbook/assets/box.png" alt=""><figcaption><p>Rounded rectangle.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/boxfilled.png" alt=""><figcaption><p>Rounded rectangle with filled center.</p></figcaption></figure>
+</div>
+
 ### Example 5 - Bezier curves
 
 As a final example here is how to draw bezier curves:
 
 ```python
+def points_on_bezier(control_point1, handle1, control_point2, handle2, number_of_points):
+    # get coordinate points
+    x1, y1 = control_point1
+    x2 = x1 + handle1[0] 
+    y2 = y1 + handle1[1]
+    x4, y4 = control_point2
+    x3 = x4 + handle2[0] 
+    y3 = y4 + handle2[1]
+    # define function
+    bezier_function = lambda t, p1, p2, p3, p4: (1-t)**3*p1 + 3*t*(1-t)**2*p2 + 3*t**2*(1-t)*p3 + t**3*p4
+    bezier_point_function = lambda t: (bezier_function(t, x1, x2, x3, x4), bezier_function(t, y1, y2, y3, y4))
 
+    # calculate points and return
+    return [bezier_point_function(t) for t in np.linspace(0, 1, number_of_points)]
+
+points = points_on_bezier((-100e-9, 0), (50e-9, 100e-9), (100e-9, 0), (-50e-9, -100e-9), 100)
+HOLES = [PointLineHole(0, 150e-9, points, thickness=30e-9)]
 ```
 
-## Ideas to add features (remove before push)
-
-- different ending types
-- different scattering calculation (slopes)
-  - handeling corners to be pointy?
-- variable thickness
+<figure><img src="../.gitbook/assets/bezier.png" alt=""><figcaption><p>Simple bezier curve hole.</p></figcaption></figure>
