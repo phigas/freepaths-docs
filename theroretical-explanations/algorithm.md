@@ -10,7 +10,7 @@ The algorithm runs the simulations step-by-step and phonon-by-phonon. For each p
 
 ### Initialization
 
-At the beginning of time, each phonon is generated at the hot side. At this moment, each phonon is assigned a frequency (wavelength) and the random direction. The frequency is assigned according to the Plank distribution of phonon frequencies at this temperature (_T_). See the picture on the [main page](./) for the example of the Plank distribution function. From the assigned frequency, the algorithm determines the phonon group velocity (_v_) from the phonon dispersion in the given material. If more than one polarization branch is available at this frequency, it is chosen randomly.
+At the beginning of time, each phonon is generated at the hot side. At this moment, each phonon is assigned a frequency (wavelength) and the random direction. The frequency is assigned according to the Plank distribution of phonon frequencies at this temperature (_T_). See the picture on the [main page](../README.md) for the example of the Plank distribution function. From the assigned frequency, the algorithm determines the phonon group velocity (_v_) from the phonon dispersion in the given material. If more than one polarization branch is available at this frequency, it is chosen randomly.
 
 The phonon starts moving step-by-step in the assigned direction according to the following equations:
 

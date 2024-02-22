@@ -53,7 +53,7 @@ where _k_ is the Boltzmann constant, ω(q) and _v_(q) are the frequency and grou
 
 ### Troubleshooting
 
-* If simulations are too slow, try using [multiprocessing](../tutorials/basics.md#multiprocessing).
+* If simulations are too slow, try using [multiprocessing](../getting-started/config-file-creation-guide.md#multiprocessing-parameter).
 * Rarely, phonons may enter a hole in the structure or break out of structure boundaries. To reduce the impact of this bug, reduce the `TIMESTEP` parameter. However, this usually happens once per thousands of collisions and has negligible impact on the final statistics.
 * If you have an error similar to `Cannot mix incompatible Qt library (5.15.7) with this library (5.15.8)` that likely means that you have a program like `qt5-styleplugins` that didn't upgrade to the latest Qt library with rest of the system.
 * If at the end of simulation the program report that less than 100% of phonons reached the cold side, you may need to increase `NUMBER_OF_TIMESTEPS` to allow more simulation time.
