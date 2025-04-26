@@ -2,8 +2,6 @@
 
 * [FreePATHS](README.md)
 
----
-
 ## Getting started
 
 * [Installation](getting-started/installation.md)
@@ -32,6 +30,6 @@
 * [Creating new holes (the easy way)](advanced-tutorials/creating-new-holes-the-easy-way.md)
 * [Adding your own hole or pillar (the advanced way)](advanced-tutorials/adding-your-own-hole-or-pillar-the-advanced-way.md)
 
----
+***
 
 * [References and credits](references-and-credits.md)
